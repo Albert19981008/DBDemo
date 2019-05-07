@@ -48,5 +48,3 @@ class UserDao(object):
 if __name__ == '__main__':
     # dropTable()
     UserDao.createTable()
-    #insertIntoTable("admin", "password")
-    #search("admin", "password")

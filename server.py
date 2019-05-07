@@ -14,10 +14,10 @@ def home():
 
 @app.route('/signin', methods=['POST'])
 def signin():
-    # 需要从request对象读取表单内容并从数据库查询：
+    # 读取表单内容并从数据库查询：
     if UserDao.search(request.form['username'], request.form['password']):
-        return '<h3>Hello, admin!</h3>'
-    return '<h3>Bad username or password.</h3>'
+        return render_template('main.html')
+    return render_template('loginfail.html')
 
 
 @app.route('/register', methods=['GET'])
@@ -27,7 +27,7 @@ def register_form():
 
 @app.route('/registerpost', methods=['POST'])
 def register():
-    # 需要从request对象读取表单内容并从数据库查询：
+    # 读取表单内容并从数据库查询：
     if UserDao.search(request.form['username'], request.form['password']):
         return '<h3>user has existed! register failed！</h3>'
     UserDao.insertIntoTable(request.form['username'], request.form['password'])
