@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+import UserDao
 import sqlite3
 
 
@@ -23,7 +24,7 @@ def signin_form():
 @app.route('/signin', methods=['POST'])
 def signin():
     # 需要从request对象读取表单内容并从数据库查询：
-    if search(request.form['username'], request.form['password']):
+    if UserDao.search(request.form['username'], request.form['password']):
         return '<h3>Hello, admin!</h3>'
     return '<h3>Bad username or password.</h3>'
 
@@ -40,55 +41,12 @@ def register_form():
 @app.route('/register', methods=['POST'])
 def register():
     # 需要从request对象读取表单内容并从数据库查询：
-    if search(request.form['username'], request.form['password']):
+    if UserDao.search(request.form['username'], request.form['password']):
         return '<h3>user has existed! register failed！</h3>'
-    insertIntoTable(request.form['username'], request.form['password'])
+    UserDao.insertIntoTable(request.form['username'], request.form['password'])
     return '<h3>register successful！</h3>'
 
 
-def createTable():
-    conn = sqlite3.connect('user.db')
-    cursor = conn.cursor()
-    cursor.execute("create table user("
-                   + "username char(20),"
-                   + "password char(20))")
-    conn.commit()
-    conn.close()
-
-
-def dropTable():
-    conn = sqlite3.connect('user.db')
-    cursor = conn.cursor()
-    cursor.execute("drop table user")
-    conn.commit()
-    conn.close()
-
-
-def insertIntoTable(usr, pw):
-    conn = sqlite3.connect('user.db')
-    cursor = conn.cursor()
-    cursor.execute(
-        "insert or ignore into user(username, password) values (?, ?)", (usr, pw))
-    conn.commit()
-    conn.close()
-
-
-def search(usr, pw):
-    conn = sqlite3.connect('user.db')
-    cursor = conn.cursor()
-    cursor.execute(
-        "select * from user where username = ? and password = ?", [usr, pw])
-    values = cursor.fetchall()
-    conn.commit()
-    conn.close()
-    if len(values) > 0:
-        return True
-    return False
-
-
 if __name__ == '__main__':
-    # dropTable()
-    createTable()
-    #insertIntoTable("admin", "password")
-    #search("admin", "password")
+    UserDao.createTable()
     app.run()
