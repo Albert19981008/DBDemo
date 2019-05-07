@@ -12,15 +12,6 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/signin', methods=['GET'])
-def signin_form():
-    return '''<form action="/signin" method="post">
-              <p><input name="username"></p>
-              <p><input name="password" type="password"></p>
-              <p><button type="submit">Sign In</button></p>
-              </form>'''
-
-
 @app.route('/signin', methods=['POST'])
 def signin():
     # 需要从request对象读取表单内容并从数据库查询：
@@ -31,14 +22,10 @@ def signin():
 
 @app.route('/register', methods=['GET'])
 def register_form():
-    return '''<form action="/register" method="post">
-              <p><input name="username"></p>
-              <p><input name="password" type="password"></p>
-              <p><button type="submit">register</button></p>
-              </form>'''
+    return render_template('register.html')
 
 
-@app.route('/register', methods=['POST'])
+@app.route('/registerpost', methods=['POST'])
 def register():
     # 需要从request对象读取表单内容并从数据库查询：
     if UserDao.search(request.form['username'], request.form['password']):
