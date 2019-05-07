@@ -12,39 +12,31 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/signin', methods=['GET'])
-def signin_form():
-    return '''<form action="/signin" method="post">
-              <p><input name="username"></p>
-              <p><input name="password" type="password"></p>
-              <p><button type="submit">Sign In</button></p>
-              </form>'''
-
-
 @app.route('/signin', methods=['POST'])
 def signin():
-    # 需要从request对象读取表单内容并从数据库查询：
+    # 读取表单内容并从数据库查询：
     if UserDao.search(request.form['username'], request.form['password']):
-        return '<h3>Hello, admin!</h3>'
-    return '<h3>Bad username or password.</h3>'
+        return render_template('main.html')
+    return render_template('autojump.html', content=' 2;URL=/ ', text="登录失败！2秒之后将自动跳转回主页")
 
 
 @app.route('/register', methods=['GET'])
 def register_form():
-    return '''<form action="/register" method="post">
-              <p><input name="username"></p>
-              <p><input name="password" type="password"></p>
-              <p><button type="submit">register</button></p>
-              </form>'''
+    return render_template('register.html')
 
 
-@app.route('/register', methods=['POST'])
+@app.route('/registerpost', methods=['POST'])
 def register():
-    # 需要从request对象读取表单内容并从数据库查询：
+    # 读取表单内容并从数据库查询：
     if UserDao.search(request.form['username'], request.form['password']):
-        return '<h3>user has existed! register failed！</h3>'
+        return render_template('autojump.html', content=' 2;URL=/register', text="登录失败！2秒之后将自动跳转回注册页")
     UserDao.insertIntoTable(request.form['username'], request.form['password'])
-    return '<h3>register successful！</h3>'
+    return render_template('autojump.html', content=' 1;URL=/main', text="登录成功！1秒之后将自动登录")
+
+
+@app.route('/main', methods=['get', 'POST'])
+def goMain():
+    return render_template('main.html')
 
 
 if __name__ == '__main__':
