@@ -1,6 +1,6 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask import request
-import UserDao
+from UserDao import UserDao
 import sqlite3
 
 
@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return '<h1>Home</h1>'
+    return render_template('index.html')
 
 
 @app.route('/signin', methods=['GET'])
