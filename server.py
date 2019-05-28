@@ -5,6 +5,7 @@ import sqlite3
 
 
 app = Flask(__name__)
+hasLogin = False
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -40,5 +41,6 @@ def goMain():
 
 
 if __name__ == '__main__':
+    # UserDao.dropTable()
     UserDao.createTable()
     app.run()
