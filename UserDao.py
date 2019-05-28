@@ -6,7 +6,7 @@ import hashlib
 class UserDao(object):
 
     @staticmethod
-    def createTable():
+    def createTableIfNotExists():
         conn = sqlite3.connect('user.db')
         cursor = conn.cursor()
         cursor.execute("create table if not exists user("
@@ -51,4 +51,4 @@ class UserDao(object):
 
 if __name__ == '__main__':
     # UserDao.dropTable()
-    UserDao.createTable()
+    UserDao.createTableIfNotExists()
