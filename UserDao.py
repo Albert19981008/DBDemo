@@ -3,7 +3,7 @@ import sqlite3
 import hashlib
 
 
-class UserDao2(object):
+class UserDao(object):
 
     @staticmethod
     def createTable():
@@ -51,4 +51,4 @@ class UserDao2(object):
 
 if __name__ == '__main__':
     # UserDao.dropTable()
-    UserDao2.createTable()
+    UserDao.createTable()
