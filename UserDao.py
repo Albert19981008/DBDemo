@@ -16,7 +16,7 @@ class UserDao(object):
         conn.close()
 
     @staticmethod
-    def dropTable():
+    def dropTableIfExists():
         conn = sqlite3.connect('user.db')
         cursor = conn.cursor()
         cursor.execute("drop table user")
@@ -35,7 +35,7 @@ class UserDao(object):
         conn.close()
 
     @staticmethod
-    def search(usr, pw):
+    def searchAndReturnIfExist(usr, pw):
         pwMd5 = hashlib.md5(pw.encode(encoding='UTF-8')).hexdigest()
         conn = sqlite3.connect('user.db')
         cursor = conn.cursor()
@@ -50,5 +50,5 @@ class UserDao(object):
 
 
 if __name__ == '__main__':
-    # UserDao.dropTable()
+    # UserDao.dropTableIfExists()
     UserDao.createTableIfNotExists()

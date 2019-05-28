@@ -46,6 +46,6 @@ def goMain():
 
 
 if __name__ == '__main__':
-    # UserDao.dropTable()
+    # UserDao.dropTableIfExists()
     UserDao.createTableIfNotExists()
     app.run()
