@@ -1,16 +1,16 @@
 import sqlite3
 
 
-class StudentDao(object):
+class CourseDao(object):
 
     @staticmethod
     def createTableIfNotExists():
         conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
-        cursor.execute("create table if not exists student("
-                       + "s_id integer primary key,"
-                       + "s_name char(100),"
-                       + "s_sex char(7))")
+        cursor.execute("create table if not exists course("
+                       + "c_id integer primary key,"
+                       + "c_name char(100),"
+                       + "department char(100))")
         conn.commit()
         conn.close()
 
@@ -18,25 +18,25 @@ class StudentDao(object):
     def dropTableIfExists():
         conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
-        cursor.execute("drop table if exists student")
+        cursor.execute("drop table if exists course")
         conn.commit()
         conn.close()
 
     @staticmethod
-    def insertIntoTable(id, name, sex):
+    def insertIntoTable(id, name, department):
         conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
         cursor.execute(
-            "insert or ignore into student(s_id, s_name, s_sex) values (?, ?, ?)", [id, name, sex])
+            "insert or ignore into course(c_id, c_name, department) values (?, ?, ?)", [id, name, department])
         conn.commit()
         conn.close()
 
     @staticmethod
-    def getAllStudents():
+    def getAllCourses():
         conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
         cursor.execute(
-            "select * from student")
+            "select * from course")
         values = cursor.fetchall()
         conn.commit()
         conn.close()
@@ -44,11 +44,11 @@ class StudentDao(object):
         return values
 
     @staticmethod
-    def searchStudentbyId(id):
+    def searchCoursebyId(id):
         conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
         cursor.execute(
-            "select * from student where s_id = ?", [id])
+            "select * from course where c_id = ?", [id])
         values = cursor.fetchall()
         conn.commit()
         conn.close()
@@ -56,11 +56,23 @@ class StudentDao(object):
         return values
 
     @staticmethod
-    def searchStudentbyName(name):
+    def searchCoursebyDepartment(department):
         conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
         cursor.execute(
-            "select * from student where s_name = ?", [name])
+            "select * from course where department = ?", [department])
+        values = cursor.fetchall()
+        conn.commit()
+        conn.close()
+        print(values)
+        return values
+
+    @staticmethod
+    def searchCoursebyName(name):
+        conn = sqlite3.connect('demo.db')
+        cursor = conn.cursor()
+        cursor.execute(
+            "select * from course where c_name = ?", [name])
         values = cursor.fetchall()
         conn.commit()
         conn.close()
@@ -70,8 +82,8 @@ class StudentDao(object):
 
 if __name__ == '__main__':
     # StudentDao.dropTableIfExists()
-    StudentDao.createTableIfNotExists()
-    StudentDao.insertIntoTable("2017234567", "小明", 12345678)
-    StudentDao.getAllStudents()
-    StudentDao.searchStudentbyId(2023)
-    StudentDao.searchStudentbyName("小明")
+    CourseDao.createTableIfNotExists()
+    CourseDao.insertIntoTable(1, "数学分析", "数学学院")
+    CourseDao.getAllCourses()
+    CourseDao.searchCoursebyId(1)
+    CourseDao.searchCoursebyName("数学分析")
