@@ -81,7 +81,7 @@ class CourseDao(object):
 
 
 if __name__ == '__main__':
-    # StudentDao.dropTableIfExists()
+    # CourseDao.dropTableIfExists()
     CourseDao.createTableIfNotExists()
     CourseDao.insertIntoTable(1, "数学分析", "数学学院")
     CourseDao.getAllCourses()

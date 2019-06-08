@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 from flask import request
 from UserDao import UserDao
-import sqlite3
 
 
 app = Flask(__name__)
