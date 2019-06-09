@@ -44,7 +44,7 @@ class StudentDao(object):
         return values
 
     @staticmethod
-    def searchStudentbyId(id):
+    def searchStudentById(id):
         conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
         cursor.execute(
@@ -56,7 +56,7 @@ class StudentDao(object):
         return values
 
     @staticmethod
-    def searchStudentbyName(name):
+    def searchStudentByName(name):
         conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
         cursor.execute(
@@ -73,5 +73,5 @@ if __name__ == '__main__':
     StudentDao.createTableIfNotExists()
     StudentDao.insertIntoTable("2017234567", "小明", 12345678)
     StudentDao.getAllStudents()
-    StudentDao.searchStudentbyId(2023)
-    StudentDao.searchStudentbyName("小明")
+    StudentDao.searchStudentById(12345678)
+    StudentDao.searchStudentByName("小明")

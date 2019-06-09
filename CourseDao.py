@@ -44,7 +44,7 @@ class CourseDao(object):
         return values
 
     @staticmethod
-    def searchCoursebyId(id):
+    def searchCourseById(id):
         conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
         cursor.execute(
@@ -56,7 +56,7 @@ class CourseDao(object):
         return values
 
     @staticmethod
-    def searchCoursebyDepartment(department):
+    def searchCourseByDepartment(department):
         conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
         cursor.execute(
@@ -68,7 +68,7 @@ class CourseDao(object):
         return values
 
     @staticmethod
-    def searchCoursebyName(name):
+    def searchCourseByName(name):
         conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
         cursor.execute(
@@ -85,5 +85,5 @@ if __name__ == '__main__':
     CourseDao.createTableIfNotExists()
     CourseDao.insertIntoTable(1, "数学分析", "数学学院")
     CourseDao.getAllCourses()
-    CourseDao.searchCoursebyId(1)
-    CourseDao.searchCoursebyName("数学分析")
+    CourseDao.searchCourseById(1)
+    CourseDao.searchCourseByName("数学分析")

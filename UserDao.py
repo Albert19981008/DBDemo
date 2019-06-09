@@ -26,7 +26,6 @@ class UserDao(object):
     @staticmethod
     def insertIntoTable(usr, pw):
         pwMd5 = hashlib.md5(pw.encode(encoding='UTF-8')).hexdigest()
-        print(pwMd5)
         conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
         cursor.execute(
@@ -41,6 +40,19 @@ class UserDao(object):
         cursor = conn.cursor()
         cursor.execute(
             "select * from user where username = ? and passwordMd5 = ?", [usr, pwMd5])
+        values = cursor.fetchall()
+        conn.commit()
+        conn.close()
+        if len(values) > 0:
+            return True
+        return False
+
+    @staticmethod
+    def searchAndReturnIfExistUser(usr):
+        conn = sqlite3.connect('demo.db')
+        cursor = conn.cursor()
+        cursor.execute(
+            "select * from user where username = ? ", [usr])
         values = cursor.fetchall()
         conn.commit()
         conn.close()
