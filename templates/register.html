@@ -1,22 +1,45 @@
-<h1>注册</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<div align="center" vertical-align="middle">
-    欢迎注册课程管理系统
-    <form action="/registerpost" method="post">
-        <p>账号： <input name="username"></p>
-        <p>密码： <input name="password" type="password"></p>
-        <p><button type="submit">注册</button></p>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <script src="{{ url_for('static', filename='bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <link href="{{ url_for('static', filename='bootstrap-3.3.7-dist/css/bootstrap.css') }}" rel="stylesheet">
+
+    <title>注册</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signin.css') }}">
+
+</head>
+
+<body>
+
+<div class="container" align="center">
+
+    <h2 class="form-signin-heading">课程管理系统</h2>
+
+    <form class="form-signin" action="/registerpost" method="post">
+        <h4 class="form-signin-heading">请注册</h4>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input id="inputEmail" class="form-control" placeholder="账号" name="username">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="密码" name="password">
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
     </form>
+
+
 </div>
 
-<style>
-    div {
+</body>
 
-        width: 400px;
-
-        height: 400px;
-
-        margin: 0 auto;
-
-    }
-</style>
+</html>
