@@ -1,22 +1,55 @@
-<html>
-    <head align="center">
-    <title>首页</title>
-    </head>
-    
-    <body bgcolor="pink" align="center">
-    <br><br><br><br><br>
-    <table border=2  align="center" bgcolor="#00AAEE" width="800" height="300">
-        <form action="/signin" method="post">
-    	<tr><td align="center" width="700" colspan="6"><font color="black" size="6">课程信息管理系统</td></tr>
-    	<tr><td align="center" width="260"><font color="yellow" size="5">账号:</td><td align="center"><input type="text" name="username" maxlength="100"></td></tr>
-    	<tr><td align="center"><font color="yellow" size="5">密码:</td><td align="center"><input type="password" name="password" maxlength="100" ></td></tr>
+<!DOCTYPE html>
+<html lang="en">
 
-		<tr><td align="center" colspan="3"><button value="确认" name="yes" type="submit" style="font-size:17px"> 确认 </button> </td></tr>
-    	</form>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-		<form action="/register" method="get">
-			<tr><td align="center" colspan="3"> <button value="没有账号？ 去注册" style="font-size:17px"> 没有账号？ 去注册 </button> </td></tr>
-    	</form>
-    </table>
-    </body>
+    <script src="{{ url_for('static', filename='bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <link href="{{ url_for('static', filename='bootstrap-3.3.7-dist/css/bootstrap.css') }}" rel="stylesheet">
+
+    <title>Signin</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signin.css') }}">
+
+</head>
+
+<body>
+
+<div class="container" align="center">
+
+    <h2 class="form-signin-heading">课程管理系统</h2>
+
+    <form class="form-signin" action="/signin" method="post">
+        <h4 class="form-signin-heading">请登录</h4>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input id="inputEmail" class="form-control" placeholder="账号" name="username">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="密码" name="password">
+
+        <!--        <div class="checkbox">-->
+        <!--            <label>-->
+        <!--                <input type="checkbox" value="remember-me"> Remember me-->
+        <!--            </label>-->
+        <!--        </div>-->
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    </form>
+
+    <form class="form-signin" action="/register" method="get">
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">没有账号? 去注册</button>
+
+    </form>
+
+</div>
+
+</body>
+
 </html>
