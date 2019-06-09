@@ -1,26 +1,22 @@
-<h1>Home</h1>
+<html>
+    <head align="center">
+    <title>首页</title>
+    </head>
+    
+    <body bgcolor="pink" align="center">
+    <br><br><br><br><br>
+    <table border=2  align="center" bgcolor="#00AAEE" width="800" height="300">
+        <form action="/signin" method="post">
+    	<tr><td align="center" width="700" colspan="6"><font color="black" size="6">课程信息管理系统</td></tr>
+    	<tr><td align="center" width="260"><font color="yellow" size="5">账号:</td><td align="center"><input type="text" name="username" maxlength="100"></td></tr>
+    	<tr><td align="center"><font color="yellow" size="5">密码:</td><td align="center"><input type="password" name="password" maxlength="100" ></td></tr>
 
-<div align="center" vertical-align="middle">
-    欢迎使用课程管理系统
-    <form action="/signin" method="post">
-        <p>账号： <input name="username"></p>
-        <p>密码： <input name="password" type="password"></p>
-        <p><button type="submit">登录</button></p>
-    </form>
+		<tr><td align="center" colspan="3"><button value="确认" name="yes" type="submit" style="font-size:17px"> 确认 </button> </td></tr>
+    	</form>
 
-    <form action="/register" method="get">
-        <p><button type="submit">没有账号？ 去注册</button></p>
-    </form>
-</div>
-
-<style>
-    div {
-
-        width: 400px;
-
-        height: 400px;
-
-        margin: 0 auto;
-
-    }
-</style>
+		<form action="/register" method="get">
+			<tr><td align="center" colspan="3"> <button value="没有账号？ 去注册" style="font-size:17px"> 没有账号？ 去注册 </button> </td></tr>
+    	</form>
+    </table>
+    </body>
+</html>

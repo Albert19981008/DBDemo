@@ -15,7 +15,7 @@ def home():
 @app.route('/signin', methods=['POST'])
 def signin():
     # 读取表单内容并从数据库查询：
-    if UserDao.search(request.form['username'], request.form['password']):
+    if UserDao.searchAndReturnIfExist(request.form['username'], request.form['password']):
         hasLogin = True
         return render_template('main.html')
     return render_template('autojump.html', content=' 2;URL=/ ', text="登录失败！2秒之后将自动跳转回登录页")
@@ -29,7 +29,7 @@ def register_form():
 @app.route('/registerpost', methods=['POST'])
 def register():
     # 读取表单内容并从数据库查询：
-    if UserDao.search(request.form['username'], request.form['password']):
+    if UserDao.searchAndReturnIfExist(request.form['username'], request.form['password']):
         return render_template('autojump.html', content=' 2;URL=/register', text="登录失败！2秒之后将自动跳转回注册页")
     UserDao.insertIntoTable(request.form['username'], request.form['password'])
     hasLogin = True
@@ -38,7 +38,7 @@ def register():
 
 @app.route('/main', methods=['get', 'POST'])
 def goMain():
-    if hasLogin == True:
+    if hasLogin:
         return render_template('main.html')
     else:
         return render_template('autojump.html', content=' 2;URL=/ ', text="登录失败！2秒之后将自动跳转回登录页")
