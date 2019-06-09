@@ -1,22 +1,77 @@
-<h1>注册</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
 
-<div align="center" vertical-align="middle">
-    欢迎注册课程管理系统
-    <form action="/registerpost" method="post">
-        <p>账号： <input name="username"></p>
-        <p>密码： <input name="password" type="password"></p>
-        <p><button type="submit">注册</button></p>
-    </form>
+    <script src="{{ url_for('static', filename='bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <link href="{{ url_for('static', filename='bootstrap-3.3.7-dist/css/bootstrap.css') }}" rel="stylesheet">
+
+    <title>注册</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signin.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cover.css') }}">
+
+</head>
+
+<body>
+<div class="site-wrapper">
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <div class="masthead clearfix">
+                <div class="inner">
+                    <h3 class="masthead-brand">课程管理系统</h3>
+                    <nav>
+                        <ul class="nav masthead-nav">
+                            <li><a href="/">登录</a></li>
+                            <li class="active"><a href="/register">注册</a></li>
+                            <li><a href="/main">主页</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="inner cover">
+                <p class="lead">
+                    本系统致力于为人大的教师和同学
+                </p>
+                <p class="lead">
+                    提供极致的课程管理体验
+                </p>
+
+            </div>
+
+
+            <form class="form-signin" action="/registerpost" method="post">
+                <h4 class="form-signin-heading">请注册</h4>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input id="inputEmail" class="form-control" placeholder="账号" name="username">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="密码" name="password">
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+            </form>
+
+            <div class="mastfoot">
+                <div class="inner">
+                    <p>
+                        All rights Reserved, by
+                        <a href="mailto:741162208@qq.com">李昕旸</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<style>
-    div {
+</body>
+</html>
 
-        width: 400px;
-
-        height: 400px;
-
-        margin: 0 auto;
-
-    }
-</style>

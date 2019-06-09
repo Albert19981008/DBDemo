@@ -7,7 +7,7 @@ class UserDao(object):
 
     @staticmethod
     def createTableIfNotExists():
-        conn = sqlite3.connect('user.db')
+        conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
         cursor.execute("create table if not exists user("
                        + "username char(100),"
@@ -16,18 +16,17 @@ class UserDao(object):
         conn.close()
 
     @staticmethod
-    def dropTable():
-        conn = sqlite3.connect('user.db')
+    def dropTableIfExists():
+        conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
-        cursor.execute("drop table user")
+        cursor.execute("drop table if exists user")
         conn.commit()
         conn.close()
 
     @staticmethod
     def insertIntoTable(usr, pw):
         pwMd5 = hashlib.md5(pw.encode(encoding='UTF-8')).hexdigest()
-        print(pwMd5)
-        conn = sqlite3.connect('user.db')
+        conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
         cursor.execute(
             "insert or ignore into user(username, passwordMd5) values (?, ?)", (usr, pwMd5))
@@ -35,9 +34,9 @@ class UserDao(object):
         conn.close()
 
     @staticmethod
-    def search(usr, pw):
+    def searchAndReturnIfExist(usr, pw):
         pwMd5 = hashlib.md5(pw.encode(encoding='UTF-8')).hexdigest()
-        conn = sqlite3.connect('user.db')
+        conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
         cursor.execute(
             "select * from user where username = ? and passwordMd5 = ?", [usr, pwMd5])
@@ -48,7 +47,20 @@ class UserDao(object):
             return True
         return False
 
+    @staticmethod
+    def searchAndReturnIfExistUser(usr):
+        conn = sqlite3.connect('demo.db')
+        cursor = conn.cursor()
+        cursor.execute(
+            "select * from user where username = ? ", [usr])
+        values = cursor.fetchall()
+        conn.commit()
+        conn.close()
+        if len(values) > 0:
+            return True
+        return False
+
 
 if __name__ == '__main__':
-    # UserDao.dropTable()
+    # UserDao.dropTableIfExists()
     UserDao.createTableIfNotExists()
