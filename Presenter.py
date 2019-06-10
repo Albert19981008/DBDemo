@@ -31,6 +31,32 @@ class Presenter(object):
         return None
 
     @staticmethod
+    def getSearch(type, opt):
+        if type == 'slogan':
+            return Presenter.getSloganSearch(opt)
+
+        return Presenter.getMain()
+
+    @staticmethod
+    def getSloganSearch(opt):
+        if opt is None:
+            return render_template('sloganSearch.html', posters=Presenter.getMainPosters())
+
+        if opt == 'search':
+            name = request.form['name']
+            slogans = None
+            if name is None or name == "":
+                slogans = SloganDao.getAllPosters()
+            else:
+                slogans = SloganDao.searchPosterByName(name)
+            lis = []
+            i = 1
+            for slogan in slogans:
+                lis.append({"id": i, 'name': slogan[0], 'desc': slogan[1]})
+                i += 1
+            return render_template('sloganSearch.html', posters=Presenter.getMainPosters(), slogans=lis)
+
+    @staticmethod
     def getManagement(type, opt):
         if type == 'slogan':
             return Presenter.getSloganManagement(opt)

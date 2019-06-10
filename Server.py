@@ -54,7 +54,7 @@ class Server(object):
     @app.route('/search', methods=['GET', 'POST'])
     def goSearch():
         if Server.hasLogin:
-            return render_template('main.html')
+            return Presenter.getSearch(request.args.get("type"), request.args.get("opt"))
         else:
             return render_template('autojump.html', content=' 2;URL=/ ', text="登录失败！2秒之后将自动跳转回登录页")
 
@@ -74,11 +74,7 @@ class Server(object):
         else:
             return render_template('autojump.html', content=' 2;URL=/ ', text="登录失败！2秒之后将自动跳转回登录页")
 
-    @staticmethod
-    @app.route('/test', methods=['GET', 'POST'])
-    def test():
-        print("sdsdsdsdsdsd")
-        return {}
+
 
 
 if __name__ == '__main__':
