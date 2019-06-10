@@ -19,7 +19,9 @@ class Presenter(object):
     @staticmethod
     def getDetailPoster(name):
         desc = Presenter.getDetailPosterDesc(name)
-        return render_template('sloganDetail.html', name=name, desc=desc)
+        if desc is not None:
+            return render_template('sloganDetail.html', name=name, desc=desc)
+        return Presenter.getMain()
 
     @staticmethod
     def getDetailPosterDesc(name):
