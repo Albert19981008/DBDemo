@@ -2,6 +2,8 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from UserDao import UserDao
+from CourseDao import CourseDao
+from StudentDao import StudentDao
 
 
 class Server(object):
@@ -46,8 +48,26 @@ class Server(object):
         else:
             return render_template('autojump.html', content=' 2;URL=/ ', text="登录失败！2秒之后将自动跳转回登录页")
 
+    @staticmethod
+    @app.route('/search', methods=['get', 'POST'])
+    def goSearch():
+        if Server.hasLogin:
+            return render_template('main.html')
+        else:
+            return render_template('autojump.html', content=' 2;URL=/ ', text="登录失败！2秒之后将自动跳转回登录页")
+
+    @staticmethod
+    @app.route('/management', methods=['get', 'POST'])
+    def goManagement():
+        if Server.hasLogin:
+            return render_template('main.html')
+        else:
+            return render_template('autojump.html', content=' 2;URL=/ ', text="登录失败！2秒之后将自动跳转回登录页")
+
 
 if __name__ == '__main__':
     # UserDao.dropTableIfExists()
     UserDao.createTableIfNotExists()
+    CourseDao.createTableIfNotExists()
+    StudentDao.createTableIfNotExists()
     Server.app.run()

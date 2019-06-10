@@ -71,7 +71,7 @@ class StudentDao(object):
 if __name__ == '__main__':
     # StudentDao.dropTableIfExists()
     StudentDao.createTableIfNotExists()
-    StudentDao.insertIntoTable("2017234567", "小明", 12345678)
+    StudentDao.insertIntoTable("2017234567", "小明", "male")
     StudentDao.getAllStudents()
-    StudentDao.searchStudentById(12345678)
+    StudentDao.searchStudentById(2017234567)
     StudentDao.searchStudentByName("小明")
