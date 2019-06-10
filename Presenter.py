@@ -18,12 +18,12 @@ class Presenter(object):
 
     @staticmethod
     def getDetailPoster(name):
-        return render_template('main.html', posters=Presenter.getDetailPosters(name))
+        desc = Presenter.getDetailPosterDesc(name)
+        return render_template('sloganDetail.html', name=name, desc=desc)
 
     @staticmethod
-    def getDetailPosters(name):
-        res = []
+    def getDetailPosterDesc(name):
         posters = SloganDao.searchPosterByName(name)
         for poster in posters:
-            res.append(poster[0])
-        return res
+            return poster[1]
+        return None
