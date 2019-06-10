@@ -114,27 +114,6 @@
 
 </div><!--/.container-->
 
-<script>
-        var ck = function() {
-            var x = prompt ("请输入标语: ");/*第一个变量为提示语，第二个变量为默认初始值*/
-            $.ajax({
-                url:'/test',
-                type:'GET',
-                data:JSON.stringify({'username':'js','password':'123456789'}),
-                success:function(res){
-                    console.log(res)
-                    console.log(0)
-                },
-                error:function (res) {
-                    console.log(res);
-                    console.log(1)
-                }
-            })
-        }
-
-</script>
-
-
 <script src="{{ url_for('static', filename='bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
