@@ -1,6 +1,7 @@
 from flask import render_template, request
 from SloganDao import SloganDao
 from StudentDao import StudentDao
+from CourseDao import CourseDao
 
 
 class Presenter(object):
@@ -37,6 +38,8 @@ class Presenter(object):
             return Presenter.getSloganSearch(opt)
         if type == 'student':
             return Presenter.getStudentSearch(opt)
+        if type == 'course':
+            return Presenter.getCourseSearch(opt)
 
         return Presenter.getMain()
 
@@ -56,6 +59,23 @@ class Presenter(object):
                 lis.append({"id": student[0], 'name': student[1], 'sex': student[2]})
                 i += 1
             return render_template('studentSearch.html', posters=Presenter.getMainPosters(), students=lis)
+
+    @staticmethod
+    def getCourseSearch(opt):
+        if opt is None:
+            return render_template('courseSearch.html', posters=Presenter.getMainPosters())
+
+        if opt == 'search':
+            name = request.form['name']
+            id = request.form['id']
+            department = request.form['department']
+            courses = CourseDao.searchCourse(name, id, department)
+            lis = []
+            i = 1
+            for course in courses:
+                lis.append({"id": course[0], 'name': course[1], 'department': course[2]})
+                i += 1
+            return render_template('courseSearch.html', posters=Presenter.getMainPosters(), courses=lis)
 
     @staticmethod
     def getSloganSearch(opt):
@@ -80,9 +100,10 @@ class Presenter(object):
     def getManagement(type, opt):
         if type == 'slogan':
             return Presenter.getSloganManagement(opt)
-
         if type == 'student':
             return Presenter.getStudentManagement(opt)
+        if type == 'course':
+            return Presenter.getCourseManagement(opt)
 
         return Presenter.getMain()
 
@@ -104,6 +125,26 @@ class Presenter(object):
         if opt == 'delete':
             id = request.form['id']
             StudentDao.deleteStudentById(id)
+            return Presenter.getMain()
+
+    @staticmethod
+    def getCourseManagement(opt):
+        if opt is None:
+            if request.args.get("prev") == "delete":
+                return render_template('courseManagement.html', posters=Presenter.getMainPosters(), delete=True)
+            else:
+                return render_template('courseManagement.html', posters=Presenter.getMainPosters(), add=True)
+
+        if opt == 'add':
+            name = request.form['name']
+            id = request.form['id']
+            department = request.form['department']
+            CourseDao.insertIntoTable(id, name, department)
+            return Presenter.getMain()
+
+        if opt == 'delete':
+            id = request.form['id']
+            CourseDao.deleteById(id)
             return Presenter.getMain()
 
     @staticmethod

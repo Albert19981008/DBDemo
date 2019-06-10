@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -35,9 +34,9 @@
                 <li><a href="/search">搜索</a></li>
                 <li><a href="/management">管理</a></li>
             </ul>
-        </div><!-- /.nav-collapse -->
-    </div><!-- /.container -->
-</nav><!-- /.navbar -->
+        </div>
+    </div>
+</nav>
 
 <div class="container">
 
@@ -57,9 +56,11 @@
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
                         mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
                         magna mollis euismod. Donec sed odio dui. </p>
-                    <p><a class="btn btn-default" href="#" role="button" onclick="ck()">搜索课程 &raquo;</a> <a
-                            class="btn btn-default" href="#" role="button">管理课程 &raquo;</a></p>
-                </div><!--/.col-xs-6.col-lg-4-->
+                    <p>
+                        <a class="btn btn-default" href="/search?type=course" role="button">搜索课程 &raquo;</a>
+                        <a class="btn btn-default" href="/management?type=course" role="button">管理课程 &raquo;</a>
+                    </p>
+                </div>
                 <div class="col-xs-6 col-lg-4">
                     <h3>学生管理</h3>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
@@ -69,7 +70,7 @@
                         <a class="btn btn-default" href="/search?type=student" role="button">搜索学生 &raquo;</a>
                         <a class="btn btn-default" href="/management?type=student" role="button">管理学生&raquo;</a>
                     </p>
-                </div><!--/.col-xs-6.col-lg-4-->
+                </div>
                 <div class="col-xs-6 col-lg-4">
                     <h3>选课管理</h3>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
@@ -78,7 +79,7 @@
                     <p><a class="btn btn-default" role="button" id="btn1">搜索选课 &raquo;</a> <a class="btn btn-default"
                                                                                               href="#" role="button">管理选课
                         &raquo;</a></p>
-                </div><!--/.col-xs-6.col-lg-4-->
+                </div>
                 <div class="col-xs-6 col-lg-4">
                     <h3>标语管理</h3>
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor
@@ -88,10 +89,10 @@
                         <a class="btn btn-default" href="/search?type=slogan" role="button">搜索标语 &raquo;</a>
                         <a class="btn btn-default" href="/management?type=slogan" role="button">管理标语 &raquo;</a>
                     </p>
-                </div><!--/.col-xs-6.col-lg-4-->
+                </div>
 
-            </div><!--/row-->
-        </div><!--/.col-xs-12.col-sm-9-->
+            </div>
+        </div>
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
             <div class="list-group">
@@ -102,8 +103,8 @@
                 <a href="/management?type=slogan" class="list-group-item">+</a>
 
             </div>
-        </div><!--/.sidebar-offcanvas-->
-    </div><!--/row-->
+        </div>
+    </div>
 
     <hr>
 
@@ -111,35 +112,7 @@
         <p>All rights Reserved.</p>
     </footer>
 
-</div><!--/.container-->
-
-<script>
-        var ck = function() {
-            var x = prompt ("请输入标语: ");/*第一个变量为提示语，第二个变量为默认初始值*/
-            $.ajax({
-                url:'/test',
-                type:'GET',
-                data:JSON.stringify({'username':'js','password':'123456789'}),
-                success:function(res){
-                    console.log(res)
-                    console.log(0)
-                },
-                error:function (res) {
-                    console.log(res);
-                    console.log(1)
-                }
-            })
-        }
-
-
-
-
-
-
-
-
-
-</script>
+</div>
 
 
 <script src="{{ url_for('static', filename='bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>

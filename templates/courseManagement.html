@@ -57,33 +57,33 @@
 
             <div align="center" vertical-align="middle">
                 <p>
-                    <a href="/management?type=student&prev=add">
+                    <a href="/management?type=course&prev=add">
                         <button type="button" class="btn btn-lg btn-info" h>增加</button>
                     </a>
-                    <a href="/management?type=student&prev=delete">
+                    <a href="/management?type=course&prev=delete">
                         <button type="button" class="btn btn-lg btn-danger">删除</button>
                     </a>
                 </p>
             </div>
             {% if add %}
-            <form class="form-signin" action="/management?type=student&opt=add" method="post">
-                <h5 class="form-signin-heading">请输入要增加的学生</h5>
+            <form class="form-signin" action="/management?type=course&opt=add" method="post">
+                <h5 class="form-signin-heading">请输入要增加的课程</h5>
                 <label for="inputEmail" class="sr-only">Email address</label>
-                <input id="inputEmail" class="form-control" placeholder="学生姓名" name="name">
+                <input id="inputEmail" class="form-control" placeholder="课程名称" name="name">
                 <label for="inputEmail2" class="sr-only">Email address</label>
-                <input id="inputEmail2" class="form-control" placeholder="学生ID" name="id">
+                <input id="inputEmail2" class="form-control" placeholder="课程ID" name="id">
                 <label for="inputPassword" class="sr-only">Password</label>
-                <input id="inputPassword" class="form-control" placeholder="学生性别" name="sex">
+                <input id="inputPassword" class="form-control" placeholder="开设院系" name="department">
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">增加</button>
             </form>
             {% endif %}
 
             {% if delete %}
-            <form class="form-signin" action="/management?type=student&opt=delete" method="post">
-                <h5 class="form-signin-heading">请输入要删除的学生</h5>
+            <form class="form-signin" action="/management?type=course&opt=delete" method="post">
+                <h5 class="form-signin-heading">请输入要删除的课程</h5>
                 <label for="inputEmailw" class="sr-only">Email address</label>
-                <input id="inputEmailw" class="form-control" placeholder="学生ID" name="id">
+                <input id="inputEmailw" class="form-control" placeholder="课程ID" name="id">
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">删除</button>
             </form>
@@ -113,27 +113,6 @@
     </footer>
 
 </div><!--/.container-->
-
-<script>
-        var ck = function() {
-            var x = prompt ("请输入标语: ");/*第一个变量为提示语，第二个变量为默认初始值*/
-            $.ajax({
-                url:'/test',
-                type:'GET',
-                data:JSON.stringify({'username':'js','password':'123456789'}),
-                success:function(res){
-                    console.log(res)
-                    console.log(0)
-                },
-                error:function (res) {
-                    console.log(res);
-                    console.log(1)
-                }
-            })
-        }
-
-</script>
-
 
 <script src="{{ url_for('static', filename='bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
