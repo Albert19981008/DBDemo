@@ -54,6 +54,14 @@ class SloganDao(object):
         print(values)
         return values
 
+    @staticmethod
+    def deletePosterByName(name):
+        conn = sqlite3.connect('demo.db')
+        cursor = conn.cursor()
+        cursor.execute(
+            "delete from poster where p_name = ?", [name])
+        conn.commit()
+
 
 if __name__ == '__main__':
     SloganDao.dropTableIfExists()

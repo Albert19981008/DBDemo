@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request
 from SloganDao import SloganDao
 
 
@@ -29,3 +29,27 @@ class Presenter(object):
         for poster in posters:
             return poster[1]
         return None
+
+    @staticmethod
+    def getManagement(type, opt):
+        if type == 'slogan':
+            print(opt)
+            return Presenter.getSloganManagement(opt)
+
+
+    @staticmethod
+    def getSloganManagement(opt):
+        if opt is None:
+            return render_template('sloganManagement.html', posters=Presenter.getMainPosters())
+        if opt == 'add':
+            name = request.form['name']
+            desc = request.form['desc']
+            SloganDao.insertIntoTable(name, desc)
+            return Presenter.getMain()
+
+        if opt == 'delete':
+            name = request.form['name']
+            SloganDao.deletePosterByName(name)
+            return Presenter.getMain()
+
+
