@@ -84,6 +84,7 @@ if __name__ == '__main__':
     # CourseDao.dropTableIfExists()
     CourseDao.createTableIfNotExists()
     CourseDao.insertIntoTable(1, "数学分析", "数学学院")
+    CourseDao.insertIntoTable(2, "程序设计", "信息学院")
+    CourseDao.insertIntoTable(3, "计算机网络", "数学学院")
     CourseDao.getAllCourses()
-    CourseDao.searchCourseById(1)
     CourseDao.searchCourseByName("数学分析")
