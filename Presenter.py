@@ -33,16 +33,17 @@ class Presenter(object):
     @staticmethod
     def getManagement(type, opt):
         if type == 'slogan':
-            print(opt)
             return Presenter.getSloganManagement(opt)
+
+        return Presenter.getMain()
 
     @staticmethod
     def getSloganManagement(opt):
         if opt is None:
             if request.args.get("prev") == "delete":
-                return render_template('sloganManagementD.html', posters=Presenter.getMainPosters())
+                return render_template('sloganManagement.html', posters=Presenter.getMainPosters(), delete=True)
             else:
-                return render_template('sloganManagement.html', posters=Presenter.getMainPosters())
+                return render_template('sloganManagement.html', posters=Presenter.getMainPosters(), add=True)
 
         if opt == 'add':
             name = request.form['name']

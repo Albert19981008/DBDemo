@@ -56,11 +56,15 @@
 
             <div align="center" vertical-align="middle">
                 <p>
-                    <a href="/management?type=slogan&prev=add"><button type="button" class="btn btn-lg btn-info" h>增加</button></a>
-                    <a href="/management?type=slogan&prev=delete"><button type="button" class="btn btn-lg btn-danger">删除</button></a>
+                    <a href="/management?type=slogan&prev=add">
+                        <button type="button" class="btn btn-lg btn-info" h>增加</button>
+                    </a>
+                    <a href="/management?type=slogan&prev=delete">
+                        <button type="button" class="btn btn-lg btn-danger">删除</button>
+                    </a>
                 </p>
             </div>
-
+            {% if add %}
             <form class="form-signin" action="/management?type=slogan&opt=add" method="post">
                 <h5 class="form-signin-heading">请输入要增加的标语</h5>
                 <label for="inputEmail" class="sr-only">Email address</label>
@@ -70,6 +74,20 @@
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">增加</button>
             </form>
+            {% endif %}
+
+            {% if delete %}
+            <form class="form-signin" action="/management?type=slogan&opt=delete" method="post">
+                <h5 class="form-signin-heading">请输入要删除的标语</h5>
+                <label for="inputEmailw" class="sr-only">Email address</label>
+                <input id="inputEmailw" class="form-control" placeholder="标语名称" name="name">
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">删除</button>
+            </form>
+
+
+            {% endif %}
+
         </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
@@ -110,6 +128,7 @@
                 }
             })
         }
+
 </script>
 
 
