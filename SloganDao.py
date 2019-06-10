@@ -62,4 +62,5 @@ if __name__ == '__main__':
     SloganDao.insertIntoTable("社会栋梁", "担负社会重任的人")
     SloganDao.insertIntoTable("追求极致", "完美主义 在更大的范围内寻找最优解")
     SloganDao.insertIntoTable("不设边界", "敢于创新 不怕麻烦 拥抱变化")
+    SloganDao.insertIntoTable("政治过硬", "敢于创新 不怕麻烦 拥抱变化")
     SloganDao.getAllPosters()

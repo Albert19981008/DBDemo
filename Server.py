@@ -66,6 +66,14 @@ class Server(object):
         else:
             return render_template('autojump.html', content=' 2;URL=/ ', text="登录失败！2秒之后将自动跳转回登录页")
 
+    @staticmethod
+    @app.route('/slogan', methods=['get'])
+    def goSloganDetail():
+        if Server.hasLogin:
+            return Presenter.getDetailPoster(request.args.get("name"))
+        else:
+            return render_template('autojump.html', content=' 2;URL=/ ', text="登录失败！2秒之后将自动跳转回登录页")
+
 
 if __name__ == '__main__':
     # UserDao.dropTableIfExists()
