@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+
+from Presenter import Presenter
 from UserDao import UserDao
 from CourseDao import CourseDao
 from StudentDao import StudentDao
@@ -44,7 +46,7 @@ class Server(object):
     @app.route('/main', methods=['get', 'POST'])
     def goMain():
         if Server.hasLogin:
-            return render_template('main.html')
+            return Presenter.getMain()
         else:
             return render_template('autojump.html', content=' 2;URL=/ ', text="登录失败！2秒之后将自动跳转回登录页")
 
