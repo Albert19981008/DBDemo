@@ -33,9 +33,10 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/main">主页</a></li>
+                <li><a href="/main">主页</a></li>
                 <li><a href="/search">搜索</a></li>
-                <li><a href="/management">管理</a></li>
+                <li class="active"><a href="/management">管理</a></li>
+            </ul>
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
@@ -82,7 +83,7 @@
             <form class="form-signin" action="/management?type=student&opt=delete" method="post">
                 <h5 class="form-signin-heading">请输入要删除的学生</h5>
                 <label for="inputEmailw" class="sr-only">Email address</label>
-                <input id="inputEmailw" class="form-control" placeholder="学生id" name="id">
+                <input id="inputEmailw" class="form-control" placeholder="学生ID" name="id">
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">删除</button>
             </form>
