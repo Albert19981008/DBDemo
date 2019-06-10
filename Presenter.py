@@ -36,11 +36,14 @@ class Presenter(object):
             print(opt)
             return Presenter.getSloganManagement(opt)
 
-
     @staticmethod
     def getSloganManagement(opt):
         if opt is None:
-            return render_template('sloganManagement.html', posters=Presenter.getMainPosters())
+            if request.args.get("prev") == "delete":
+                return render_template('sloganManagementD.html', posters=Presenter.getMainPosters())
+            else:
+                return render_template('sloganManagement.html', posters=Presenter.getMainPosters())
+
         if opt == 'add':
             name = request.form['name']
             desc = request.form['desc']
@@ -51,5 +54,3 @@ class Presenter(object):
             name = request.form['name']
             SloganDao.deletePosterByName(name)
             return Presenter.getMain()
-
-

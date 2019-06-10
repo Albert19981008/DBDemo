@@ -61,14 +61,12 @@
                 </p>
             </div>
 
-            <form class="form-signin" action="/management?type=slogan&opt=add" method="post">
-                <h5 class="form-signin-heading">请输入要增加的标语</h5>
+            <form class="form-signin" action="/management?type=slogan&opt=delete" method="post">
+                <h5 class="form-signin-heading">请输入要删除的标语</h5>
                 <label for="inputEmail" class="sr-only">Email address</label>
                 <input id="inputEmail" class="form-control" placeholder="标语名称" name="name">
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input id="inputPassword" class="form-control" placeholder="标语描述" name="desc">
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">增加</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">删除</button>
             </form>
         </div><!--/.col-xs-12.col-sm-9-->
 
@@ -92,26 +90,6 @@
     </footer>
 
 </div><!--/.container-->
-
-<script>
-        var ck = function() {
-            var x = prompt ("请输入标语: ");/*第一个变量为提示语，第二个变量为默认初始值*/
-            $.ajax({
-                url:'/test',
-                type:'GET',
-                data:JSON.stringify({'username':'js','password':'123456789'}),
-                success:function(res){
-                    console.log(res)
-                    console.log(0)
-                },
-                error:function (res) {
-                    console.log(res);
-                    console.log(1)
-                }
-            })
-        }
-</script>
-
 
 <script src="{{ url_for('static', filename='bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>

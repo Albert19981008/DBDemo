@@ -43,7 +43,7 @@ class Server(object):
         return render_template('autojump.html', content=' 1;URL=/main', text="注册并登录成功！1秒之后将自动登录")
 
     @staticmethod
-    @app.route('/main', methods=['get', 'POST'])
+    @app.route('/main', methods=['GET', 'POST'])
     def goMain():
         if Server.hasLogin:
             return Presenter.getMain()
@@ -51,7 +51,7 @@ class Server(object):
             return render_template('autojump.html', content=' 2;URL=/ ', text="登录失败！2秒之后将自动跳转回登录页")
 
     @staticmethod
-    @app.route('/search', methods=['get', 'POST'])
+    @app.route('/search', methods=['GET', 'POST'])
     def goSearch():
         if Server.hasLogin:
             return render_template('main.html')
@@ -59,7 +59,7 @@ class Server(object):
             return render_template('autojump.html', content=' 2;URL=/ ', text="登录失败！2秒之后将自动跳转回登录页")
 
     @staticmethod
-    @app.route('/management', methods=['get', 'POST'])
+    @app.route('/management', methods=['GET', 'POST'])
     def goManagement():
         if Server.hasLogin:
             return Presenter.getManagement(request.args.get("type"), request.args.get("opt"))
