@@ -26,6 +26,7 @@ class SCDao(object):
 
     @staticmethod
     def insertIntoTable(c_id, s_id):
+        print("in! ", c_id, s_id)
         if len(CourseDao.searchCourseById(c_id)) <= 0 or len(StudentDao.searchStudentById(s_id)) <= 0:
             return
         conn = sqlite3.connect('demo.db')
@@ -73,6 +74,7 @@ class SCDao(object):
 
     @staticmethod
     def deleteById(c_id, s_id):
+        print("delete", s_id, c_id)
         conn = sqlite3.connect('demo.db')
         cursor = conn.cursor()
         cursor.execute(

@@ -117,5 +117,5 @@ if __name__ == '__main__':
     StudentDao.insertIntoTable("2017234568", "吴彦祖", "男")
     StudentDao.insertIntoTable("2017234569", "刘亦菲", "女")
     StudentDao.getAllStudents()
-    StudentDao.searchStudent("", -1, "男")
+    StudentDao.searchStudent("", "", "男")
     StudentDao.searchStudentByName("小明")

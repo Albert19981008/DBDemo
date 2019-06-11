@@ -2,6 +2,7 @@ from flask import render_template, request
 from SloganDao import SloganDao
 from StudentDao import StudentDao
 from CourseDao import CourseDao
+from SCDao import SCDao
 
 
 class Presenter(object):
@@ -40,8 +41,28 @@ class Presenter(object):
             return Presenter.getStudentSearch(opt)
         if type == 'course':
             return Presenter.getCourseSearch(opt)
+        if type == 'sc':
+            return Presenter.getScSearch(opt)
 
         return Presenter.getMain()
+
+    @staticmethod
+    def getScSearch(opt):
+        if opt is None:
+            return render_template('scSearch.html', posters=Presenter.getMainPosters())
+
+        if opt == 'search':
+            s_name = request.form['s_name']
+            s_id = request.form['s_id']
+            c_name = request.form['c_name']
+            c_id = request.form['c_id']
+            scs = SCDao.searchSC(c_id, s_id, c_name, s_name)
+            lis = []
+            i = 1
+            for sc in scs:
+                lis.append({"c_name": sc[0], 's_name': sc[1], 'c_id': sc[2], 's_id': sc[3]})
+                i += 1
+            return render_template('scSearch.html', posters=Presenter.getMainPosters(), scs=lis)
 
     @staticmethod
     def getStudentSearch(opt):
@@ -104,8 +125,30 @@ class Presenter(object):
             return Presenter.getStudentManagement(opt)
         if type == 'course':
             return Presenter.getCourseManagement(opt)
+        if type == 'sc':
+            return Presenter.getScManagement(opt)
 
         return Presenter.getMain()
+
+    @staticmethod
+    def getScManagement(opt):
+        if opt is None:
+            if request.args.get("prev") == "delete":
+                return render_template('scManagement.html', posters=Presenter.getMainPosters(), delete=True)
+            else:
+                return render_template('scManagement.html', posters=Presenter.getMainPosters(), add=True)
+
+        if opt == 'add':
+            c_id = request.form['c_id']
+            s_id = request.form['s_id']
+            SCDao.insertIntoTable(c_id, s_id)
+            return Presenter.getMain()
+
+        if opt == 'delete':
+            c_id = request.form['c_id']
+            s_id = request.form['s_id']
+            SCDao.deleteById(c_id, s_id)
+            return Presenter.getMain()
 
     @staticmethod
     def getStudentManagement(opt):
